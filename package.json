@@ -23,7 +23,5 @@
     "nodemon": "^2.0.15"
   },
   "_id": "login-backend@1.0.0",
-  "engines": {
-    "node": "v16.0.0"
-  }
+ 
 }
