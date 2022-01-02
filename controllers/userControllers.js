@@ -4,7 +4,7 @@ import generateToken from "../generateToken.js";
 import User from "../models/userModel.js";
 
 const loginUser = async (req, res) => {
-   const { email, password } = req.body.user;
+   const { email, password } = req.body;
 
    const user = await User.findOne({ email });
 
@@ -31,7 +31,7 @@ const loginUser = async (req, res) => {
 const registerUser = async (req, res) => {
    try {
       const saltRounds = 10;
-      const { email, password, number, isAdmin, name } = req.body.user;
+      const { email, password, number, isAdmin, name } = req.body;
 
       if (email.replace(/\s+/g, " ").trim() != "") {
          const hashPassword = await bcrypt.hash(password, saltRounds);
