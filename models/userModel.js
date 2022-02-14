@@ -1,8 +1,7 @@
 // for schemas
 import mongoose from "mongoose";
-import uniqueValidator from "mongoose-unique-validator";
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
    {
       name: {
          type: String,
@@ -25,22 +24,69 @@ const userSchema = mongoose.Schema(
          type: Number,
          required: true,
       },
+      buyer: [
+         {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Buyer",
+         },
+      ],
    },
    {
       timestamps: true,
    }
 );
-userSchema.plugin(uniqueValidator);
+
+const buyerSchema = new mongoose.Schema(
+   {
+      user: {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: "User",
+      },
+      budget: {
+         type: Number,
+         required: true,
+      },
+      propertyName: {
+         type: String,
+      },
+      negotiable: {
+         type: Boolean,
+      },
+      locality: {
+         type: String,
+         required: true,
+      },
+      floor: {
+         type: Number | String,
+      },
+      modeOfPayment: {
+         type: String,
+      },
+      TypeOfBuyer: {
+         type: String,
+      },
+      moveInTime: {
+         type: String,
+      },
+      numOfBedRoom: {
+         type: Number,
+      },
+      maid: {
+         type: Boolean,
+      },
+      view: {
+         type: String,
+      },
+      others: {
+         type: String,
+      },
+   },
+   {
+      timestamps: true,
+   }
+);
 
 const User = mongoose.model("User", userSchema);
+const Buyer = mongoose.model("Buyer", buyerSchema);
 
-userSchema.set("toJSON", {
-   transform: (document, returnedObject) => {
-      returnedObject.id = returnedObject._id.toString();
-      delete returnedObject.__v;
-      delete returnedObject.password;
-      // the passwordHash should not be revealed
-   },
-});
-
-export default User;
+export { User, Buyer };

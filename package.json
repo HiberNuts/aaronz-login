@@ -22,14 +22,6 @@
     "mongoose-unique-validator": "^3.0.0",
     "nodemon": "^2.0.15"
   },
-<<<<<<< HEAD
-  "_id": "login-backend@1.0.0",
-  "engines": {
-    "node": "v16.0.0"
-}
-=======
   "_id": "login-backend@1.0.0"
->>>>>>> ae8978ab0655933f7eb13f4d08c2446010b223f7
   
 }
-

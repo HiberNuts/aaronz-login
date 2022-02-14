@@ -6,7 +6,8 @@ import cors from "cors";
 import { errorHandler, notFound } from "./MiddleWares/errorMiddleware.js";
 import router from "./routes/userRoute.js";
 import jwt from "jsonwebtoken";
-import User from "./models/userModel.js";
+import { User } from "./models/userModel.js";
+import buyRouter from "./routes/buyerRoute.js";
 
 //constants
 const app = express();
@@ -49,6 +50,7 @@ app.post("/verify", async (req, res) => {
 });
 
 app.use("/user", router);
+app.use("/buyReq", buyRouter);
 
 //error middleware always should be in last
 app.use(notFound);

@@ -1,7 +1,7 @@
 // used for all funtion that route need to peerform
 import bcrypt from "bcryptjs";
 import generateToken from "../generateToken.js";
-import User from "../models/userModel.js";
+import { User } from "../models/userModel.js";
 
 const loginUser = async (req, res) => {
    const { email, password } = req.body;
@@ -73,7 +73,7 @@ const registerUser = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-   const user = await User.find({});
+   const user = await User.find({}).populate("buyer");
 
    if (user) {
       res.json(user);
@@ -83,4 +83,21 @@ const getUser = async (req, res) => {
    }
 };
 
-export { registerUser, getUser, loginUser };
+const getUserbyId = async (req, res) => {
+   const id = req.params.id;
+   const user = await User.findById(id).populate("buyer");
+
+   if (user) {
+      res.json(user);
+   } else {
+      res.status(404);
+      throw new Error("User not found");
+   }
+};
+
+const getUserRequest = async (req, res) => {
+   const data = await User.find({});
+   res.json(data);
+};
+
+export { registerUser, getUser, loginUser, getUserRequest, getUserbyId };

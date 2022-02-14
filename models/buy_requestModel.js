@@ -1,44 +1,68 @@
-import mongoose from "mongoose";
-import uniqueValidator from "mongoose-unique-validator";
+// import mongoose from "mongoose";
 
-const buyerSchema = mongoose.Schema({
-   budget: {
-      type: Number,
-      required: true,   
-   },
-   negotiable: {
-      type: Boolean,
-   },
-   locality: {
-      type: String,
-      required: true,
-   },
-   floor: {
-      type: Number | String,
-   },
-   modeOfPayment: {
-      type: String,
-   },
-   TypeOfBuyer: {
-      type: String,
-   },
-   moveInTime: {
-      type: String,
-   },
-   numOfBedRoom: {
-      type: number,
-   },
-   maid: {
-      type: boolean,
-   },
-   view: {
-      type: String,
-   },
-   others: {
-      type: String,
-   },
-});
+// import User from "./userModel.js";
 
-const buyer = mongoose.model("buyer", buyerSchema);
+// const buyerSchema = mongoose.Schema(
+//    {
+//       budget: {
+//          type: Number,
+//          required: true,
+//       },
+//       propertyName: {
+//          type: String,
+//       },
+//       negotiable: {
+//          type: Boolean,
+//       },
+//       locality: {
+//          type: String,
+//          required: true,
+//       },
+//       floor: {
+//          type: Number | String,
+//       },
+//       modeOfPayment: {
+//          type: String,
+//       },
+//       TypeOfBuyer: {
+//          type: String,
+//       },
+//       moveInTime: {
+//          type: String,
+//       },
+//       numOfBedRoom: {
+//          type: Number,
+//       },
+//       maid: {
+//          type: Boolean,
+//       },
+//       view: {
+//          type: String,
+//       },
+//       others: {
+//          type: String,
+//       },
+//       user: [
+//          {
+//             type: mongoose.Schema.Types.ObjectId,
+//             ref:User,
+//          },
+//       ],
+//    },
+//    {
+//       timestamps: true,
+//    }
+// );
 
-export default buyer;
+// const buyer = mongoose.model("Buyer", buyerSchema);
+
+// buyerSchema.set("toJSON", {
+//    transform: (document, returnedObject) => {
+//       returnedObject.id = returnedObject._id.toString();
+//       delete returnedObject.__v;
+//       delete returnedObject.password;
+//       // the passwordHash should not be revealed
+//    },
+// });
+
+// export default buyer;
