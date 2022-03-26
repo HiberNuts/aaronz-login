@@ -32,7 +32,7 @@ const connectDB = async () => {
     //     }
     //   });
     // });
-    //added comment
+    //added com
 
     console.log(`Mongodb connected `);
   } catch (error) {
