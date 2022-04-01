@@ -17,8 +17,8 @@ const connectDB = async () => {
 
     // console.log((await mongoose.connection.db.collections()).forEach((name) => console.log(name)));
 
-    const collection = await mongoose.connection.db.collections();
-    console.log(collection[2].s.db.s.client);
+    // const collection = await mongoose.connection.db.collections();
+    // console.log(collection[2].s.db.s.client);
 
     // mongoose.connection.on("open", function () {
     //   mongoose.connection.db.collections(function (error, names) {
@@ -32,7 +32,7 @@ const connectDB = async () => {
     //     }
     //   });
     // });
-    //added com
+    //added commment
 
     console.log(`Mongodb connected `);
   } catch (error) {

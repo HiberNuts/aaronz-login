@@ -64,7 +64,7 @@ app.post("/verify", async (req, res) => {
 
 app.use("/user", router);
 app.use("/buyReq", buyRouter);
-app.use("/", listingsRouter);
+app.use("/listings", listingsRouter);
 
 //error middleware always should be in last
 app.use(notFound);

@@ -14,4 +14,13 @@ const postListings = async (req, res) => {
   }
 };
 
-export { postListings };
+const getListings = async (req, res) => {
+  try {
+    const result = await PropListings.find({});
+    res.json(result);
+  } catch (err) {
+    console.log(`Error while getting the listings ${err} `);
+  }
+};
+
+export { postListings, getListings };
