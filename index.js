@@ -4,11 +4,10 @@ import express from "express";
 import connectDB from "./dbConnect.js";
 import cors from "cors";
 import { errorHandler, notFound } from "./MiddleWares/errorMiddleware.js";
-import router from "./routes/userRoute.js";
+import userRouter from "./routes/userRoute.js";
 import jwt from "jsonwebtoken";
 import { User } from "./models/userModel.js";
 import buyRouter from "./routes/buyerRoute.js";
-
 import mongoose from "mongoose";
 import listingsRouter from "./routes/listingsRoute.js";
 
@@ -36,15 +35,15 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 
-app.get("/listings", async (req, res) => {
-  try {
-    const collection = await mongoose.connection.db.collections();
+// app.get("/listings", async (req, res) => {
+//   try {
+//     const collection = await mongoose.connection.db.collections();
 
-    res.json(collection[2]);
-  } catch (err) {
-    console.log(`error in getiing lsitings ${err}`);
-  }
-});
+//     res.json(collection[2]);
+//   } catch (err) {
+//     console.log(`error in getiing lsitings ${err}`);
+//   }
+// });
 
 // ogin validator
 app.post("/verify", async (req, res) => {
@@ -62,7 +61,7 @@ app.post("/verify", async (req, res) => {
   }
 });
 
-app.use("/user", router);
+app.use("/user", userRouter);
 app.use("/buyReq", buyRouter);
 app.use("/listings", listingsRouter);
 
