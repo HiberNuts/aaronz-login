@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import express from "express";
 import connectDB from "./dbConnect.js";
 import cors from "cors";
-import jwt from "jsonwebtoken";
 import { notFoundMiddleware, loginErrorMiddleware } from "./MiddleWares/errorMiddleware.js";
 import errorHandler from "errorhandler";
 

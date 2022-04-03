@@ -2,6 +2,7 @@
 import bcrypt from "bcryptjs";
 import generateToken from "../generateToken.js";
 import { User } from "../models/userModel.js";
+import jwt from "jsonwebtoken";
 
 //constant function
 const getTokenFrom = (request) => {
