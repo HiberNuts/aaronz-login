@@ -4,55 +4,29 @@ import express from "express";
 import connectDB from "./dbConnect.js";
 import cors from "cors";
 import jwt from "jsonwebtoken";
-import { errorHandler, notFound } from "./MiddleWares/errorMiddleware.js";
-import { errorHandler } from "./MiddleWares/errorMiddleware.js";
+import { notFoundMiddleware, loginErrorMiddleware } from "./MiddleWares/errorMiddleware.js";
+import errorHandler from "errorhandler";
 
 //file imports
 import userRouter from "./routes/userRoute.js";
-import { User } from "./models/userModel.js";
 import buyRouter from "./routes/buyerRoute.js";
 import listingsRouter from "./routes/listingsRoute.js";
 
 //constants
 const app = express();
 const PORT = process.env.PORT || 3001;
-// defining function to get token out of header
-const getTokenFrom = (request) => {
-  const authorization = request.get("authorization");
-  if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
-    return authorization.substring(7);
-  }
-  return null;
-};
 
-//Middlewares
-
+//additional functions
+app.use(express.json());
 app.use(cors());
 dotenv.config();
+
 //connecting to mongodb
 connectDB();
-
-app.use(express.json());
 
 //routes
 app.get("/", (req, res) => {
   res.send("hello");
-});
-
-// Login validator
-app.post("/verify", async (req, res) => {
-  try {
-    const token = getTokenFrom(req);
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    if (!token || !decodedToken.id) {
-      return res.status(401).json({ error: true, message: "Invalid Token" });
-    }
-
-    const user = await User.findById(decodedToken.id);
-    res.json(user);
-  } catch (err) {
-    res.send(err);
-  }
 });
 
 app.use("/user", userRouter);
@@ -60,7 +34,8 @@ app.use("/buyReq", buyRouter);
 app.use("/listings", listingsRouter);
 
 //error middleware always should be in last
-app.use(notFound);
+app.use(loginErrorMiddleware);
+app.use(notFoundMiddleware);
 app.use(errorHandler);
 
 //caalling
