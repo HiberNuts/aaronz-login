@@ -3,12 +3,14 @@ import dotenv from "dotenv";
 import express from "express";
 import connectDB from "./dbConnect.js";
 import cors from "cors";
-import { errorHandler, notFound } from "./MiddleWares/errorMiddleware.js";
-import userRouter from "./routes/userRoute.js";
 import jwt from "jsonwebtoken";
+import { errorHandler, notFound } from "./MiddleWares/errorMiddleware.js";
+import { errorHandler } from "./MiddleWares/errorMiddleware.js";
+
+//file imports
+import userRouter from "./routes/userRoute.js";
 import { User } from "./models/userModel.js";
 import buyRouter from "./routes/buyerRoute.js";
-import mongoose from "mongoose";
 import listingsRouter from "./routes/listingsRoute.js";
 
 //constants
@@ -23,6 +25,8 @@ const getTokenFrom = (request) => {
   return null;
 };
 
+//Middlewares
+
 app.use(cors());
 dotenv.config();
 //connecting to mongodb
@@ -35,17 +39,7 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 
-// app.get("/listings", async (req, res) => {
-//   try {
-//     const collection = await mongoose.connection.db.collections();
-
-//     res.json(collection[2]);
-//   } catch (err) {
-//     console.log(`error in getiing lsitings ${err}`);
-//   }
-// });
-
-// ogin validator
+// Login validator
 app.post("/verify", async (req, res) => {
   try {
     const token = getTokenFrom(req);
