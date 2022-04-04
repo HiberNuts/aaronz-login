@@ -16,11 +16,21 @@ const postListings = async (req, res) => {
 
 const getListings = async (req, res) => {
   try {
-    const result = await PropListings.find({ });
+    const result = await PropListings.find({});
     res.json(result);
   } catch (err) {
     console.log(`Error while getting the listings ${err} `);
   }
 };
 
-export { postListings, getListings };
+const filterPrice = async (req, res) => {
+  try {
+    const result = await PropListings.find({ });
+    
+    res.json(result);
+  } catch (err) {
+    console.log(`Error while getting the listings ${err} `);
+  }
+};
+
+export { postListings, getListings, filterPrice };
