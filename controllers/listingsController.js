@@ -23,6 +23,15 @@ const getListings = async (req, res) => {
   }
 };
 
+const getLimitedListings = async (req, res) => {
+  try {
+    const result = await PropListings.find({}).limit(14);
+    res.json(result);
+  } catch (err) {
+    console.log(`Error while getting the listings ${err} `);
+  }
+};
+
 const filterListings = async (req, res) => {
   try {
     const { rooms, adtype, bathroom, parking, tenanted } = req.query;
@@ -59,4 +68,4 @@ const filterListings = async (req, res) => {
   }
 };
 
-export { postListings, getListings, filterListings };
+export { postListings, getListings, filterListings,getLimitedListings };
