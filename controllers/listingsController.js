@@ -1,3 +1,4 @@
+import { AggregationCursor } from "mongoose";
 import { PropListings } from "../models/listingsModel.js";
 
 const postListings = async (req, res) => {
@@ -68,4 +69,49 @@ const filterListings = async (req, res) => {
   }
 };
 
-export { postListings, getListings, filterListings,getLimitedListings };
+export { postListings, getListings, filterListings, getLimitedListings };
+
+//ad type=sale, rent
+// unit type= apartment, villa , retail,office, penthouse, hotel apartment
+//  tenanated = 0,1,2
+// furnished = 1,2,3
+
+//primary view= lots : LT & Jumeirah Heights
+//lake
+// Partial Fountain"
+// Marina View"
+// Full Sea View
+// "Community view"
+// Green Path"
+// "Partial Sea View"
+
+//property title
+//property name
+// listings agent
+//bedrooms
+//price
+//no of bathrooms
+// parking
+
+// facilities:{
+//          "Balcony",
+//         "Basement parking",
+//         "Broadband ready",
+//         "Built in wardrobes",
+//         "Central air conditioning",
+//         "Central heating",
+//         "Community View",
+//         "Covered parking",
+//         "Fully fitted kitchen",
+//         "Intercom",
+//         "Marble floors",
+//         "On high floor",
+//         "Sauna",
+//         "Shared swimming pool",
+//         "Children's play area",
+//         "Fitness Center",
+//         "Public park",
+//         "Public parking",
+//         "Restaurants",
+//         "Shops"
+// }
