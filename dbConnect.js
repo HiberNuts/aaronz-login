@@ -10,8 +10,17 @@ const connectDB = async () => {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
+    console.log(`Mongodb connected `);
+  } catch (error) {
+    console.log(`Inside dbConnecter - Error : ${error.message}`);
+  }
+};
 
-    // mongoose.connection.db.listCollections().toArray(function (err, names) {
+export default connectDB;
+
+
+
+// mongoose.connection.db.listCollections().toArray(function (err, names) {
     //   console.log(names[2]); // [{ name: 'dbname.myCollection' }]
     // });
 
@@ -33,11 +42,3 @@ const connectDB = async () => {
     //   });
     // });
     //added commment
-
-    console.log(`Mongodb connected `);
-  } catch (error) {
-    console.log(`Inside dbConnecter - Error : ${error.message}`);
-  }
-};
-
-export default connectDB;

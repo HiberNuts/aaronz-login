@@ -1,4 +1,3 @@
-import { AggregationCursor } from "mongoose";
 import { PropListings } from "../models/listingsModel.js";
 
 const postListings = async (req, res) => {
@@ -30,6 +29,17 @@ const getLimitedListings = async (req, res) => {
     res.json(result);
   } catch (err) {
     console.log(`Error while getting the listings ${err} `);
+  }
+};
+const searchListings = async (req, res) => {
+  try {
+    console.log(req.params.name);
+    // const result = await PropListings.find({ Property_Name: { $regex: "/^" + req.params.name + "/" } });
+    const result = await PropListings.find({ Property_Name: new RegExp(req.params.name) });
+
+    res.json(result);
+  } catch (err) {
+    console.log(`Error while filtering the listings ${err} `);
   }
 };
 
@@ -69,7 +79,7 @@ const filterListings = async (req, res) => {
   }
 };
 
-export { postListings, getListings, filterListings, getLimitedListings };
+export { postListings, getListings, filterListings, getLimitedListings, searchListings };
 
 //ad type=sale, rent
 // unit type= apartment, villa , retail,office, penthouse, hotel apartment
