@@ -33,9 +33,8 @@ const getLimitedListings = async (req, res) => {
 };
 const searchListings = async (req, res) => {
   try {
-    console.log(req.params.name);
     // const result = await PropListings.find({ Property_Name: { $regex: "/^" + req.params.name + "/" } });
-    const result = await PropListings.find({ Property_Name: new RegExp(req.params.name) });
+    const result = await PropListings.find({ Property_Name: new RegExp(req.params.name, "i") });
 
     res.json(result);
   } catch (err) {
