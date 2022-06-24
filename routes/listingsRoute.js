@@ -8,6 +8,7 @@ import {
   searchListings,
 } from "../controllers/listingsController.js";
 
+
 listingsRouter.route("/").post(postListings);
 listingsRouter.route("/").get(getListings);
 listingsRouter.route("/filter").get(filterListings);
