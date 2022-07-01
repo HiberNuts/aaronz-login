@@ -31,6 +31,7 @@ const getLimitedListings = async (req, res) => {
     console.log(`Error while getting the listings ${err} `);
   }
 };
+
 const searchListings = async (req, res) => {
   try {
     // const result = await PropListings.find({ Property_Name: { $regex: "/^" + req.params.name + "/" } });
