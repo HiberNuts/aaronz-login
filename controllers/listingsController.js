@@ -7,6 +7,7 @@ const postListings = async (req, res) => {
 
     const Listing = await PropListings.create(data);
 
+    
     if (Listing) {
       res.json(Listing);
     }
