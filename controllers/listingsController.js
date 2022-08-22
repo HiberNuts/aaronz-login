@@ -1,5 +1,6 @@
 import { PropListings } from "../models/listingsModel.js";
-
+import { parseString } from "xml2js";
+import axios from "axios";
 const postListings = async (req, res) => {
   try {
     const data = req.body;
@@ -16,8 +17,21 @@ const postListings = async (req, res) => {
 
 const getListings = async (req, res) => {
   try {
-    const result = await PropListings.find({});
-    res.json(result);
+    var xmldata = await axios.get("http://xml.propspace.com/feed/xml.php?cl=3410&pid=9922&acc=1154");
+    // console.log(xmldata.data);
+
+    // parsing xml data
+    parseString(xmldata.data, function (err, results) {
+      // parsing to json
+      let data = JSON.stringify(results);
+
+      // display the json data
+
+      // console.log("results", data);
+      res.send(data);
+    });
+    // const result = await PropListings.find({});
+    // res.json(result);
   } catch (err) {
     console.log(`Error while getting the listings ${err} `);
   }
