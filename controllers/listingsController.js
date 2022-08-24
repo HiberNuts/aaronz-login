@@ -1,3 +1,5 @@
+// This controller is responsible for fetching listings
+
 import { PropListings } from "../models/listingsModel.js";
 import { parseString } from "xml2js";
 import axios from "axios";
@@ -7,7 +9,6 @@ const postListings = async (req, res) => {
 
     const Listing = await PropListings.create(data);
 
-    
     if (Listing) {
       res.json(Listing);
     }
@@ -19,20 +20,10 @@ const postListings = async (req, res) => {
 const getListings = async (req, res) => {
   try {
     var xmldata = await axios.get("http://xml.propspace.com/feed/xml.php?cl=3410&pid=9922&acc=1154");
-    // console.log(xmldata.data);
-
-    // parsing xml data
     parseString(xmldata.data, function (err, results) {
-      // parsing to json
-      let data = JSON.stringify(results);
-
-      // display the json data
-
-      // console.log("results", data);
-      res.send(data);
+      let Listings = JSON.stringify(results.Listings.Listing);
+      res.send(Listings);
     });
-    // const result = await PropListings.find({});
-    // res.json(result);
   } catch (err) {
     console.log(`Error while getting the listings ${err} `);
   }
@@ -49,10 +40,23 @@ const getLimitedListings = async (req, res) => {
 
 const searchListings = async (req, res) => {
   try {
-    // const result = await PropListings.find({ Property_Name: { $regex: "/^" + req.params.name + "/" } });
-    const result = await PropListings.find({ Property_Name: new RegExp(req.params.name, "i") });
-
-    res.json(result);
+    // // const result = await PropListings.find({ Property_Name: { $regex: "/^" + req.params.name + "/" } });
+    // const result = await PropListings.find({ Property_Name: new RegExp(req.params.name, "i") });
+    // var xmldata = await axios.get("http://xml.propspace.com/feed/xml.php?cl=3410&pid=9922&acc=1154");
+    // parseString(xmldata.data, function (err, results) {
+    //   let datas = JSON.stringify(results);
+    //   // const filter=datas.filter(data=>data.)
+    //   res.send(data);
+    // });
+    // res.json(result);
+    // var xmldata = await axios.get("http://xml.propspace.com/feed/xml.php?cl=3410&pid=9922&acc=1154");
+    // parseString(xmldata.data, function (err, results) {
+    //   let Listings = JSON.stringify(results.Listings.Listing);
+    //   let data = Listings.forEach((listing) => {
+    //     listing.filter((list) => list.Property_Name == new RegExp(req.params.name, "i"));
+    //   });
+    //   res.send(data);
+    // });
   } catch (err) {
     console.log(`Error while filtering the listings ${err} `);
   }
