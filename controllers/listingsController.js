@@ -17,6 +17,7 @@ const postListings = async (req, res) => {
   }
 };
 
+
 const getListings = async (req, res) => {
   try {
     var xmldata = await axios.get("http://xml.propspace.com/feed/xml.php?cl=3410&pid=9922&acc=1154");
