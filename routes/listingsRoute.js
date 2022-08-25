@@ -16,3 +16,5 @@ listingsRouter.route("/search/:name").get(searchListings);
 listingsRouter.route("/search").get(getListings);
 
 export default listingsRouter;
+
+
